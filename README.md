@@ -1,1 +1,3 @@
 # dendronFrontmatterGen
+
+Generate Dendron frontmatter
