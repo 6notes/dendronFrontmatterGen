@@ -1,6 +1,6 @@
 # dendronFrontmatterGen
 
-Generate Dendron frontmatter
+[Dendron frontmatter generator](https://6notes.github.io/dendronFrontmatterGen/)
 
 ## Getting Started
 
