@@ -1,0 +1,1 @@
+export { genUUID } from "./genUUID";
