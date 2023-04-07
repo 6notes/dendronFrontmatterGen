@@ -1,13 +1,15 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { Editor as EditorType, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React from "react";
 
-type MenuBarProps = {
+import { genUUID } from "../helpers";
+
+type EditorBarProps = {
   editor: EditorType | null;
 };
 
-export function MenuBar(props: MenuBarProps) {
+export function MenuBar(props: EditorBarProps) {
   const { editor } = props;
 
   if (!editor) {
@@ -16,18 +18,37 @@ export function MenuBar(props: MenuBarProps) {
 
   return (
     <>
-      <button
+      <Button
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}
       >
         undo
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() => editor.chain().focus().redo().run()}
         disabled={!editor.can().chain().focus().redo().run()}
       >
         redo
-      </button>
+      </Button>
+    </>
+  );
+}
+
+export function FooterBar(props: EditorBarProps) {
+  const { editor } = props;
+
+  if (!editor) {
+    return null;
+  }
+
+  return (
+    <>
+      <Button
+        onClick={() => editor.chain().focus().selectAll()}
+        disabled={!editor.can().chain().focus().undo().run()}
+      >
+        Copy to clipboard
+      </Button>
     </>
   );
 }
@@ -36,14 +57,17 @@ export function Editor() {
   const editor = useEditor({
     extensions: [StarterKit],
     content: `
-      <h2>
-        Hi there,
-      </h2>
-      <blockquote>
-        Wow, that’s amazing. Good work, boy! 👏
-        <br />
-        — Mom
-      </blockquote>
+    <pre>
+      <code>
+        ---
+        id: ${genUUID()}
+        title: ""
+        desc: ""
+        updated: ${new Date().valueOf()}
+        created: ${new Date().valueOf()}
+        ---
+      </code>
+    </pre>
     `,
   });
 
@@ -51,6 +75,7 @@ export function Editor() {
     <Box>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
+      <FooterBar editor={editor} />
     </Box>
   );
 }
