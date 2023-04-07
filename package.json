@@ -13,8 +13,6 @@
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@tiptap/extension-color": "^2.0.2",
-    "@tiptap/extension-text-style": "^2.0.2",
     "@tiptap/pm": "^2.0.2",
     "@tiptap/react": "^2.0.2",
     "@tiptap/starter-kit": "^2.0.2",
