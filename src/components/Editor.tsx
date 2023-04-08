@@ -3,7 +3,7 @@ import { Editor as EditorType, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React from "react";
 
-import { genUUID } from "../helpers";
+import { generateFrontmatter, genUUID } from "../helpers";
 
 import { CopyExtension } from "./Editor/extensions";
 
@@ -60,29 +60,43 @@ export function FooterBar(props: EditorBarProps) {
       >
         Copy
       </Button>
-      <Button {...buttonStyles}>Generate new</Button>
+      <Button
+        {...buttonStyles}
+        onClick={() => {
+          editor
+            .chain()
+            .focus()
+            .selectAll()
+            .deleteSelection()
+            .insertContentAt(0, generateFrontmatter())
+            // Required to delete the trailing newline
+            .selectNodeForward()
+            .deleteSelection()
+            .run();
+        }}
+      >
+        Make new
+      </Button>
     </HStack>
   );
 }
 
 export function Editor() {
+  const content = generateFrontmatter({
+    id: genUUID(),
+    createdDate: new Date(),
+  });
+
   const editor = useEditor({
     extensions: [StarterKit, CopyExtension],
-    content: `
-    <pre><code>---
-id: ${genUUID()}
-title: ""
-desc: ""
-updated: ${new Date().valueOf()}
-created: ${new Date().valueOf()}
----</code></pre>`,
+    content,
   });
 
   return (
     <Box border="1px solid #111" borderRadius={5}>
       <VStack p={2} gap={1}>
         <MenuBar editor={editor} />
-        <Box p={2}>
+        <Box p={2} minWidth="300px">
           <EditorContent editor={editor} />
         </Box>
         <FooterBar editor={editor} />
