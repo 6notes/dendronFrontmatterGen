@@ -21,14 +21,14 @@ export function MenuBar(props: EditorBarProps) {
       <Button
         {...buttonStyles}
         onClick={() => editor.chain().focus().undo().run()}
-        disabled={!editor.can().chain().focus().undo().run()}
+        isDisabled={!editor.can().chain().focus().undo().run()}
       >
         undo
       </Button>
       <Button
         {...buttonStyles}
         onClick={() => editor.chain().focus().redo().run()}
-        disabled={!editor.can().chain().focus().redo().run()}
+        isDisabled={!editor.can().chain().focus().redo().run()}
       >
         redo
       </Button>
