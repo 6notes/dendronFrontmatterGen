@@ -2,7 +2,7 @@ import { Button, ButtonProps, Flex, HStack, useToast } from "@chakra-ui/react";
 import { Editor as EditorType } from "@tiptap/react";
 import React from "react";
 
-import { generateFrontmatter } from "../../helpers";
+import { copyText, generateFrontmatter } from "../../helpers";
 
 const buttonStyles: ButtonProps = {
   backgroundColor: "#222",
@@ -29,14 +29,20 @@ export function FooterBar(props: EditorBarProps) {
     <Flex width="100%">
       <Button
         {...buttonStyles}
-        onClick={() => {
-          editor
+        onClick={async () => {
+          /*editor
             .chain()
             .focus()
             .selectAll()
             .copyToClipboard()
             .setTextSelection(0)
-            .run();
+            .run();*/
+          editor.chain().focus().selectAll().run();
+          const selectedText = editor.state.doc.textBetween(
+            editor.state.selection.from,
+            editor.state.selection.to
+          );
+          await copyText(selectedText);
           toast({
             duration: 1500,
             isClosable: true,
