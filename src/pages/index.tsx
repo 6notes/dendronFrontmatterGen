@@ -1,12 +1,10 @@
+import React from "react";
 import { Box, Heading, VStack } from "@chakra-ui/react";
 import Head from "next/head";
-import { Inter } from "next/font/google";
 
 import Link from "../components/ChakraNextLink";
 import { Editor } from "../components/Editor";
 import styles from "../styles/Home.module.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (

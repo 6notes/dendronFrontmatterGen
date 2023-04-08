@@ -1,6 +1,6 @@
+import React from "react";
 import { Button, ButtonProps, Flex, HStack, useToast } from "@chakra-ui/react";
 import { Editor as EditorType } from "@tiptap/react";
-import React from "react";
 
 import { copyText, generateFrontmatter } from "../../helpers";
 
@@ -30,13 +30,6 @@ export function FooterBar(props: EditorBarProps) {
       <Button
         {...buttonStyles}
         onClick={async () => {
-          /*editor
-            .chain()
-            .focus()
-            .selectAll()
-            .copyToClipboard()
-            .setTextSelection(0)
-            .run();*/
           editor.chain().focus().selectAll().run();
           const selectedText = editor.state.doc.textBetween(
             editor.state.selection.from,

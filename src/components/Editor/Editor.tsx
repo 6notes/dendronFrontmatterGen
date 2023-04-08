@@ -1,17 +1,9 @@
-import {
-  Box,
-  Button,
-  ButtonProps,
-  HStack,
-  Spinner,
-  VStack,
-} from "@chakra-ui/react";
-import { Editor as EditorType, EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import React from "react";
+import { Box, VStack } from "@chakra-ui/react";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
 
 import { generateFrontmatter, genUUID } from "../../helpers";
-
 import { FooterBar, HeaderBar } from "./Toolbar";
 
 export function Editor() {
