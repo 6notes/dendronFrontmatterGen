@@ -5,6 +5,8 @@ import React from "react";
 
 import { genUUID } from "../helpers";
 
+import { CopyExtension } from "./Editor/extensions";
+
 type EditorBarProps = {
   editor: EditorType | null;
 };
@@ -49,20 +51,23 @@ export function FooterBar(props: EditorBarProps) {
   }
 
   return (
-    <>
+    <HStack>
       <Button
         {...buttonStyles}
-        onClick={() => editor.chain().focus().selectAll().run()}
+        onClick={() =>
+          editor.chain().focus().selectAll().copyToClipboard().run()
+        }
       >
-        Select all (WIP)
+        Copy
       </Button>
-    </>
+      <Button {...buttonStyles}>Generate new</Button>
+    </HStack>
   );
 }
 
 export function Editor() {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, CopyExtension],
     content: `
     <pre><code>---
 id: ${genUUID()}
