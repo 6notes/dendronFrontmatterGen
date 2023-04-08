@@ -1,5 +1,5 @@
 import React from "react";
-import { chakra, LinkProps } from "@chakra-ui/react";
+import { chakra, LinkProps, textDecoration } from "@chakra-ui/react";
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 
 // Using the approach from https://chakra-ui.com/docs/components/link#nextjs-13
@@ -20,7 +20,12 @@ export default function ChakraNextLink(
 ) {
   const { children, href, ...otherProps } = props;
   return (
-    <ChakraWrappedNextLink {...otherProps} href={href}>
+    <ChakraWrappedNextLink
+      color="lightBlue"
+      _hover={{ textDecoration: "underline" }}
+      {...otherProps}
+      href={href}
+    >
       {children}
     </ChakraWrappedNextLink>
   );

@@ -1,9 +1,10 @@
-import Head from "next/head";
-//import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { Editor } from "../components/Editor";
 import { Box, Heading, VStack } from "@chakra-ui/react";
+import Head from "next/head";
+import { Inter } from "next/font/google";
+
+import Link from "../components/ChakraNextLink";
+import { Editor } from "../components/Editor";
+import styles from "../styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,12 @@ export default function Home() {
       </Head>
       <Box as="main" className={styles.main}>
         <VStack gap={5}>
-          <Heading>Dendron Frontmatter Generator</Heading>
+          <Box textAlign="center">
+            <Heading>Dendron Frontmatter Generator</Heading>
+            <Link href="https://github.com/6notes/dendronFrontmatterGen">
+              Repo
+            </Link>
+          </Box>
           <Box>
             <Editor />
           </Box>
