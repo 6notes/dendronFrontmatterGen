@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { Editor } from "@/components/Editor";
-import { Box } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +18,12 @@ export default function Home() {
         <link rel="manifest" href="./manifest.json" />
       </Head>
       <Box as="main" className={styles.main}>
-        <Box>
-          <Editor />
-        </Box>
+        <VStack gap={5}>
+          <Heading>Dendron Frontmatter Generator</Heading>
+          <Box>
+            <Editor />
+          </Box>
+        </VStack>
       </Box>
     </Box>
   );

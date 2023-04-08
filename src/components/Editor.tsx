@@ -64,25 +64,22 @@ export function Editor() {
   const editor = useEditor({
     extensions: [StarterKit],
     content: `
-    <pre>
-      <code>
-        ---
-        id: ${genUUID()}
-        title: ""
-        desc: ""
-        updated: ${new Date().valueOf()}
-        created: ${new Date().valueOf()}
-        ---
-      </code>
-    </pre>
-    `,
+    <pre><code>---
+id: ${genUUID()}
+title: ""
+desc: ""
+updated: ${new Date().valueOf()}
+created: ${new Date().valueOf()}
+---</code></pre>`,
   });
 
   return (
     <Box border="1px solid #111" borderRadius={5}>
       <VStack p={2} gap={1}>
         <MenuBar editor={editor} />
-        <EditorContent editor={editor} />
+        <Box p={2}>
+          <EditorContent editor={editor} />
+        </Box>
         <FooterBar editor={editor} />
       </VStack>
     </Box>
