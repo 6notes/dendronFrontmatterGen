@@ -12,7 +12,6 @@ import React from "react";
 
 import { generateFrontmatter, genUUID } from "../../helpers";
 
-import { CopyExtension } from "./extensions";
 import { FooterBar, HeaderBar } from "./Toolbar";
 
 export function Editor() {
@@ -22,7 +21,7 @@ export function Editor() {
   });
 
   const editor = useEditor({
-    extensions: [StarterKit, CopyExtension],
+    extensions: [StarterKit],
     content,
   });
 
