@@ -1,4 +1,4 @@
-import { Button, ButtonProps, HStack } from "@chakra-ui/react";
+import { Button, ButtonProps, Flex, HStack, useToast } from "@chakra-ui/react";
 import { Editor as EditorType } from "@tiptap/react";
 import React from "react";
 
@@ -7,6 +7,10 @@ import { generateFrontmatter } from "../../helpers";
 const buttonStyles: ButtonProps = {
   backgroundColor: "#222",
   color: "white",
+  width: "100%",
+  _hover: {
+    filter: "brightness(140%)",
+  },
 };
 
 type EditorBarProps = {
@@ -15,18 +19,25 @@ type EditorBarProps = {
 
 export function FooterBar(props: EditorBarProps) {
   const { editor } = props;
+  const toast = useToast();
 
   if (!editor) {
     return null;
   }
 
   return (
-    <HStack>
+    <Flex width="100%">
       <Button
         {...buttonStyles}
-        onClick={() =>
-          editor.chain().focus().selectAll().copyToClipboard().run()
-        }
+        onClick={() => {
+          editor.chain().focus().selectAll().copyToClipboard().focus().run();
+          toast({
+            isClosable: true,
+            position: "top",
+            status: "success",
+            title: "Copied to clipboard",
+          });
+        }}
       >
         Copy
       </Button>
@@ -47,7 +58,7 @@ export function FooterBar(props: EditorBarProps) {
       >
         Make new
       </Button>
-    </HStack>
+    </Flex>
   );
 }
 
