@@ -52,8 +52,7 @@ export function FooterBar(props: EditorBarProps) {
     <>
       <Button
         {...buttonStyles}
-        onClick={() => editor.chain().focus().selectAll()}
-        disabled={!editor.can().chain().focus().undo().run()}
+        onClick={() => editor.chain().focus().selectAll().run()}
       >
         Select all (WIP)
       </Button>
