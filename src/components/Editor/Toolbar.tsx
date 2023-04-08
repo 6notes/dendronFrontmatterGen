@@ -30,8 +30,15 @@ export function FooterBar(props: EditorBarProps) {
       <Button
         {...buttonStyles}
         onClick={() => {
-          editor.chain().focus().selectAll().copyToClipboard().focus().run();
+          editor
+            .chain()
+            .focus()
+            .selectAll()
+            .copyToClipboard()
+            .setTextSelection(0)
+            .run();
           toast({
+            duration: 1500,
             isClosable: true,
             position: "top",
             status: "success",
