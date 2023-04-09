@@ -2,6 +2,8 @@
 
 [Dendron frontmatter generator](https://6notes.github.io/dendronFrontmatterGen/)
 
+Website for generating Dendron's frontmatter and copying it to your clipboard. This allows for making Dendron notes with proper frontmatters on mobile.
+
 ## Dev server
 
 Running the development server:
