@@ -36,6 +36,7 @@ export function FooterBar(props: EditorBarProps) {
             editor.state.selection.to
           );
           await copyText(selectedText);
+          editor.chain().blur().run();
           toast({
             duration: 1500,
             isClosable: true,
@@ -59,6 +60,7 @@ export function FooterBar(props: EditorBarProps) {
             // Required to delete the trailing newline
             .selectNodeForward()
             .deleteSelection()
+            .blur()
             .run();
         }}
       >
@@ -79,15 +81,15 @@ export function HeaderBar(props: EditorBarProps) {
     <HStack>
       <Button
         {...buttonStyles}
-        onClick={() => editor.chain().focus().undo().run()}
-        isDisabled={!editor.can().chain().focus().undo().run()}
+        onClick={() => editor.chain().focus().undo().blur().run()}
+        isDisabled={!editor.can().chain().focus().undo().blur().run()}
       >
         Undo
       </Button>
       <Button
         {...buttonStyles}
-        onClick={() => editor.chain().focus().redo().run()}
-        isDisabled={!editor.can().chain().focus().redo().run()}
+        onClick={() => editor.chain().focus().redo().blur().run()}
+        isDisabled={!editor.can().chain().focus().redo().blur().run()}
       >
         Redo
       </Button>
