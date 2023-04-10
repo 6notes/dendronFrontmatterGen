@@ -26,7 +26,7 @@ export function FooterBar(props: EditorBarProps) {
   }
 
   return (
-    <Flex width="100%">
+    <Flex gap={2} width="100%">
       <Button
         {...buttonStyles}
         onClick={async () => {
