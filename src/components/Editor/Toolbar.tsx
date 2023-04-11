@@ -82,14 +82,14 @@ export function HeaderBar(props: EditorBarProps) {
       <Button
         {...buttonStyles}
         onClick={() => editor.chain().focus().undo().blur().run()}
-        isDisabled={!editor.can().chain().focus().undo().blur().run()}
+        isDisabled={!editor.can().chain().focus().undo().run()}
       >
         Undo
       </Button>
       <Button
         {...buttonStyles}
         onClick={() => editor.chain().focus().redo().blur().run()}
-        isDisabled={!editor.can().chain().focus().redo().blur().run()}
+        isDisabled={!editor.can().chain().focus().redo().run()}
       >
         Redo
       </Button>
